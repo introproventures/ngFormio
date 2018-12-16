@@ -22,6 +22,7 @@ module.exports = function(app) {
           label: '',
           key: 'file',
           image: false,
+          privateDownload: true,
           imageSize: '200',
           placeholder: '',
           multiple: false,

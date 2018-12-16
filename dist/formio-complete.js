@@ -89295,7 +89295,7 @@ module.exports = function(app) {
                 : {};
               if (info.tableView) {
                 // Reset the tableChild value for datagrids, so that components have headers.
-                view += '<td>' + info.tableView(row[component.key] || '', {
+                view += '<td>' + info.tableView((row && row[component.key]) || '', {
                   component: component,
                   $interpolate: options.$interpolate,
                   componentInfo: options.componentInfo,
@@ -89308,7 +89308,7 @@ module.exports = function(app) {
                 if (component.prefix) {
                   view += component.prefix;
                 }
-                view += row[component.key] || '';
+                view += (row && row[component.key]) || '';
                 if (component.suffix) {
                   view += ' ' + component.suffix;
                 }
@@ -89797,7 +89797,7 @@ module.exports = function(app) {
             view += '<tr>';
             formioUtils.eachComponent(options.component.components, function(component) {
               // Don't render disabled fields, or fields with undefined data.
-              if (!component.tableView || row[component.key] === undefined) {
+              if (!component.tableView || !row || row[component.key] === undefined) {
                 return;
               }
 
@@ -89807,7 +89807,7 @@ module.exports = function(app) {
                 : {};
               if (info.tableView) {
                 // Reset the tableChild value for datagrids, so that components have headers.
-                view += '<td>' + info.tableView(row[component.key] || '', {
+                view += '<td>' + info.tableView((row && row[component.key]) || '', {
                   component: component,
                   $interpolate: options.$interpolate,
                   componentInfo: options.componentInfo,
@@ -89820,7 +89820,7 @@ module.exports = function(app) {
                 if (component.prefix) {
                   view += component.prefix;
                 }
-                view += row[component.key] || '';
+                view += (row && row[component.key]) || '';
                 if (component.suffix) {
                   view += ' ' + component.suffix;
                 }
@@ -90317,6 +90317,7 @@ module.exports = function(app) {
           label: '',
           key: 'file',
           image: false,
+          privateDownload: true,
           imageSize: '200',
           placeholder: '',
           multiple: false,
